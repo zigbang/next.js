@@ -40,6 +40,7 @@ type NextBabelPresetOptions = {
   'preset-env'?: any
   'preset-react'?: any
   'class-properties'?: any
+  decorators?: any
   'transform-runtime'?: any
   'experimental-modern-preset'?: PluginItem
   'styled-jsx'?: StyledJsxBabelOptions
@@ -140,6 +141,10 @@ module.exports = (
       ],
       require('@babel/plugin-syntax-dynamic-import'),
       require('./plugins/react-loadable-plugin'),
+      [
+        require('@babel/plugin-proposal-decorators'),
+        options['decorators'] || {},
+      ],
       [
         require('@babel/plugin-proposal-class-properties'),
         options['class-properties'] || {},
