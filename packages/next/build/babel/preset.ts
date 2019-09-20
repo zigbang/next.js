@@ -143,11 +143,11 @@ module.exports = (
       require('./plugins/react-loadable-plugin'),
       [
         require('@babel/plugin-proposal-decorators'),
-        options['decorators'] || {},
+        options['decorators'] || { legacy: true },
       ],
       [
         require('@babel/plugin-proposal-class-properties'),
-        options['class-properties'] || {},
+        options['class-properties'] || { loose: true },
       ],
       [
         require('@babel/plugin-proposal-object-rest-spread'),

@@ -18,6 +18,7 @@ const babelClientOpts = {
     '@babel/preset-react'
   ],
   plugins: [
+    ['@babel/plugin-proposal-decorators', { legacy: true }],
     ['@babel/plugin-proposal-class-properties', { loose: true }],
     [
       '@babel/plugin-transform-runtime',
@@ -48,6 +49,7 @@ const babelServerOpts = {
   ],
   plugins: [
     'babel-plugin-dynamic-import-node',
+    ['@babel/plugin-proposal-decorators', { legacy: true }],
     ['@babel/plugin-proposal-class-properties', { loose: true }]
   ]
 }
