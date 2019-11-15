@@ -156,6 +156,7 @@
     "@zeit/ncc": "0.18.5",
     "arg": "4.1.0",
     "babel-plugin-dynamic-import-node": "2.2.0",
+    "happypack": "^5.0.1",
     "nanoid": "2.0.3",
     "resolve": "1.11.0",
     "taskr": "1.1.0",

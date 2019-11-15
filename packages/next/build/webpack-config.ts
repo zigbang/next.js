@@ -36,6 +36,8 @@ import { ReactLoadablePlugin } from './webpack/plugins/react-loadable-plugin'
 import { ServerlessPlugin } from './webpack/plugins/serverless-plugin'
 import { TerserPlugin } from './webpack/plugins/terser-webpack-plugin/src/index'
 
+const HappyPack = require('happypack')
+
 type ExcludesFalse = <T>(x: T | false) => x is T
 
 const escapePathVariables = (value: any) => {
@@ -516,7 +518,7 @@ export default async function getBaseWebpackConfig(
 
             return /node_modules/.test(path)
           },
-          use: defaultLoaders.babel,
+          use: 'happypack/loader?id=next',
         },
       ].filter(Boolean),
     },
@@ -662,7 +664,7 @@ export default async function getBaseWebpackConfig(
           typescript: typeScriptPath,
           async: dev,
           useTypescriptIncrementalApi: true,
-          checkSyntacticErrors: true,
+          checkSyntacticErrors: dev ? true : false,
           tsconfig: tsConfigPath,
           reportFiles: ['**', '!**/__tests__/**', '!**/?(*.)(spec|test).*'],
           compilerOptions: { isolatedModules: true, noEmit: true },
@@ -688,8 +690,14 @@ export default async function getBaseWebpackConfig(
           chunkFilename: (inputChunkName: string) =>
             inputChunkName.replace(/\.js$/, '.module.js'),
         }),
+      new HappyPack({
+        id: 'next',
+        loaders: [defaultLoaders.babel],
+      }),
     ].filter((Boolean as any) as ExcludesFalse),
   }
+
+  webpackConfig.amd
 
   if (typeof config.webpack === 'function') {
     webpackConfig = config.webpack(webpackConfig, {
