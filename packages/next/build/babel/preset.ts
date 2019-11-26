@@ -121,8 +121,7 @@ module.exports = (
       require('@babel/preset-typescript'),
     ],
     plugins: [
-      options['optional-chaining'] ||
-        require('@babel/plugin-proposal-optional-chaining'),
+      require('@babel/plugin-proposal-optional-chaining'),
       [
         require('./plugins/jsx-pragma'),
         {
