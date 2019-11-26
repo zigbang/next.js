@@ -9,7 +9,7 @@
   "homepage": "https://nextjs.org",
   "types": "types/index.d.ts",
   "files": [
-    "dist",
+    "dist/**/*",
     "app.js",
     "app.d.ts",
     "babel.js",
