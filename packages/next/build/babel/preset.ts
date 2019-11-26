@@ -44,6 +44,7 @@ type NextBabelPresetOptions = {
   'transform-runtime'?: any
   'experimental-modern-preset'?: PluginItem
   'styled-jsx'?: StyledJsxBabelOptions
+  'optional-chaining'?: any
 }
 
 type BabelPreset = {
@@ -120,6 +121,8 @@ module.exports = (
       require('@babel/preset-typescript'),
     ],
     plugins: [
+      options['optional-chaining'] ||
+        require('@babel/plugin-proposal-optional-chaining'),
       [
         require('./plugins/jsx-pragma'),
         {
